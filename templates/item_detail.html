@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ object.name }}
+<br>
+{{ object.quantity }}
+<br>
+{{ object.purchase_date }}
+<br><br>
+
+<a href="{% url 'item_delete' object.storage.slug object.pk %}">Eaten?</a>
+{% endblock content %}

@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.text import slugify
 
 
@@ -44,7 +44,7 @@ class Storage(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('storage_list', args=[str(self.id)])
+        return reverse_lazy('storage_list', args=[str(self.id)])
 
 
 class Item(models.Model):
@@ -59,5 +59,8 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+    # def __getattr__(self, name):
+    #     return getattr(self.storage, name, None)
+
     def get_absolute_url(self):
-        return reverse('storage_list')
+        return reverse_lazy('item_list', args=[str(self.id)])

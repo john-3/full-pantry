@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 
@@ -25,9 +25,24 @@ class ItemCreateView(CreateView):
     template_name = 'item_add.html'
     fields = ('name', 'quantity', 'weight',
               'purchase_date', 'price', 'group', 'storage',)
+    # success_url = reverse_lazy('item_list', kwargs={'slug': str(
+    #     getattr(Item.objects.last(), 'storage')).lower()})
+
+    def get_success_url(self):
+        return reverse('item_list', args=(str(self.object.storage).lower(),))
+
+    print(Item.objects.last())
+    print(getattr(Item.objects.last(), 'storage'))
+    print('hello')
+
+
+class ItemDetailView(DetailView):
+    model = Item
+    template_name = 'item_detail.html'
+    success_url = reverse_lazy('storage_list')
 
 
 class ItemDeleteView(DeleteView):
     model = Item
     template_name = 'item_delete.html'
-    success_url = reverse('item_list')
+    success_url = reverse_lazy('storage_list')

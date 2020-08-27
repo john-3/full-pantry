@@ -2,13 +2,13 @@
 
 {% block content %}
 
-{% for item in all_item_list %}
+{% for item in all_item_list reversed %}
 
 {% if item.storage|lower == view.kwargs.slug %}
 
-{{ item }}
+<a href="{% url 'item_detail' item.storage.slug item.pk %}">{{ item }}</a>
 <br>
-{{ view.kwargs }}
+{{ view.kwargs }} || purchased on {{ item.purchase_date }}
 <br>
 <br>
 
