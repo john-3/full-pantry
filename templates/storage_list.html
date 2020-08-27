@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for storage in all_storage_list %}
+<div class="card">
+    <div class="card-header"><a href="{% url 'item_list' storage.slug %}">{{ storage }}</a></div>
+</div>
+<br />
+{% endfor %}
+
+{% endblock content %}
