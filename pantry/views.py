@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
+from django.urls import reverse
 
 # Create your views here.
 
@@ -24,3 +25,9 @@ class ItemCreateView(CreateView):
     template_name = 'item_add.html'
     fields = ('name', 'quantity', 'weight',
               'purchase_date', 'price', 'group', 'storage',)
+
+
+class ItemDeleteView(DeleteView):
+    model = Item
+    template_name = 'item_delete.html'
+    success_url = reverse('item_list')
