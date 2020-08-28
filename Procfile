@@ -1,0 +1,1 @@
+web gunicorn full_pantry.wsgi --log-file -
