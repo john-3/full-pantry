@@ -31,10 +31,6 @@ class ItemCreateView(CreateView):
     def get_success_url(self):
         return reverse('item_list', args=(str(self.object.storage).lower(),))
 
-    print(Item.objects.last())
-    print(getattr(Item.objects.last(), 'storage'))
-    print('hello')
-
 
 class ItemDetailView(DetailView):
     model = Item
