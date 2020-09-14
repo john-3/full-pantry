@@ -12,7 +12,7 @@ const reqTwo = axios.get('http://127.0.0.1:8000/api/storage');
 const HeaderTitle = styled.h1``;
 
 const App = () => {
-  const [storage, setStorage] = useState();
+  const [storage, setStorage] = useState([]);
 
   useEffect(() => {
     axios
@@ -38,10 +38,10 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <React.Fragment>
       <HeaderTitle>Pantry</HeaderTitle>
       <StorageContainer storage={storage} />
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Ingredient = styled.div`
+const IngredientCard = styled.div`
   padding: 10px;
   border: 1px solid;
+  background-color: white;
 `;
 
-export const Ingredient = () => {
-  return <Ingredient />;
+const Ingredient = ({ name }) => {
+  return <IngredientCard>{name}</IngredientCard>;
 };
+
+export default Ingredient;
