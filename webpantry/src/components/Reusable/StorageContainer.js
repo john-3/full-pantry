@@ -9,7 +9,6 @@ import './../../test.css';
 
 const StorageContainer = (props) => {
   const { storage } = props;
-
   const storageItems =
     storage &&
     storage.map((item) => (
