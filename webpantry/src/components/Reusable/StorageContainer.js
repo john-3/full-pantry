@@ -34,11 +34,35 @@ const StorageContainer = (props) => {
     setIsOpen(storageOpenState)
   }, [storage])
 
+  useEffect(() => {
+    const handler = function (event) {
+      if (event.key === 'Escape') {
+        isOpen[index.current] = false;
+        setIsOpen([...isOpen])
+      }
+    }
+
+
+    window.addEventListener('keydown', handler)
+    return () => {
+      window.removeEventListener('keydown', handler)
+    }
+  }, [isOpen])
+
+  // useEffect(() => {
+  //   for (var i = 0; i < isOpen.length; i++) {
+  //     if (i !== index.current) {
+  //       isOpen[i] = false
+  //     }
+  //   }
+  //   isOpen[index.current] = true;
+  //   setIsOpen([...isOpen]);
+  // }, [isOpen])
 
   const bind = useGesture(
     {
       onDrag: ({ down, movement: [mx], direction: [xDir], distance, cancel }) => {
-        if (down && distance > window.innerWidth / 20)
+        if (down && distance > window.innerWidth / 7)
           cancel(
             (index.current = clamp(
               index.current + (xDir > 0 ? -1 : 1),

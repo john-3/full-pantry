@@ -8,7 +8,6 @@ const IngredientCard = styled.div`
 `;
 
 const Ingredient = ({ ingredient }) => {
-  console.log(ingredient)
   const { name } = ingredient
   return <IngredientCard>{name}</IngredientCard>;
 };

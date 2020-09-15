@@ -10,7 +10,9 @@ const reqOne = axios.get('http://fpantry.herokuapp.com/api/items');
 const reqTwo = axios.get('http://fpantry.herokuapp.com/api/storage');
 
 const HeaderTitle = styled.h1`
-  background-color: white;
+  background-color: grey;
+  margin: 0px;
+  color: #ccc;
 `;
 
 const App = () => {
