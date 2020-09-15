@@ -7,7 +7,9 @@ const IngredientCard = styled.div`
   background-color: white;
 `;
 
-const Ingredient = ({ name }) => {
+const Ingredient = ({ ingredient }) => {
+  console.log(ingredient)
+  const { name } = ingredient
   return <IngredientCard>{name}</IngredientCard>;
 };
 

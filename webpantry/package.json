@@ -8,13 +8,13 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "lodash-es": "^4.17.15",
+    "polished": "^3.6.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^7.0.16",
-
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

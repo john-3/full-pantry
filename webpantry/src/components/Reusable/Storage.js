@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 // Components
 import Ingredient from './Ingredient';
+import { lighten } from 'polished';
 
 const StorageCard = styled(animated.div)`
   border: 1px solid black;
@@ -15,14 +16,13 @@ const StorageCard = styled(animated.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.isOpen ? '#ccfff6' : '#ffde9f')};
+  background-color: ${(props) => (props.isOpen ? lighten(0.1, props.styles.backgroundColor) : props.styles.backgroundColor)};
 `;
 
 const StorageTitle = styled.h2``;
 
 const Storage = (props) => {
-  const { name, ingredients, onClick, style } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const { name, ingredients, onClick, styles, index, isOpen } = props;
 
   const renderIngredients = (ingredients) => {
     if (ingredients.length < 0) {
@@ -30,23 +30,27 @@ const Storage = (props) => {
     }
 
     return ingredients.map((ingredient) => (
-      <Ingredient key={ingredient.id} name={ingredient.name} />
+      <Ingredient ingredient={ingredient} />
     ));
   };
 
   const updateOpenCloseUI = (isOpen) => {
     return isOpen ? (
-      <button onClick={() => setIsOpen(!isOpen)}>Close {name}</button>
+      <button onClick={() => onClick(index)}>Close {name}</button>
     ) : (
-      <p>Click to open</p>
-    );
+        <p>Click to open</p>
+      );
   };
+
+  useEffect(() => {
+    renderIngredients(ingredients)
+  }, [ingredients])
 
   return (
     <StorageCard
-      style={style}
+      styles={styles}
       isOpen={isOpen}
-      onClick={() => !isOpen && setIsOpen(!isOpen)}
+      onClick={() => !isOpen && onClick(index)}
     >
       <StorageTitle onClick={onClick}>{name}</StorageTitle>
       {isOpen && renderIngredients(ingredients)}

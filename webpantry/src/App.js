@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -6,13 +6,16 @@ import './App.css';
 
 import StorageContainer from './components/Reusable/StorageContainer';
 
-const reqOne = axios.get('http://127.0.0.1:8000/api/items');
-const reqTwo = axios.get('http://127.0.0.1:8000/api/storage');
+const reqOne = axios.get('http://fpantry.herokuapp.com/api/items');
+const reqTwo = axios.get('http://fpantry.herokuapp.com/api/storage');
 
-const HeaderTitle = styled.h1``;
+const HeaderTitle = styled.h1`
+  background-color: white;
+`;
 
 const App = () => {
   const [storage, setStorage] = useState([]);
+  // const currentDate = new Date()
 
   useEffect(() => {
     axios
