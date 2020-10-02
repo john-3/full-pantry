@@ -9,7 +9,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ('id', 'name', 'quantity', 'price',
-                  'purchase_date', 'group', 'storage',)
+                  'purchase_date', 'expiry_date', 'group', 'storage',)
 
 
 class StorageSerializer(serializers.ModelSerializer):

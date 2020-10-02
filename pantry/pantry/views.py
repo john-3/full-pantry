@@ -24,7 +24,7 @@ class ItemCreateView(CreateView):
     model = Item
     template_name = 'item_add.html'
     fields = ('name', 'quantity', 'weight',
-              'purchase_date', 'price', 'group', 'storage',)
+              'purchase_date', 'expiry_date', 'price', 'group', 'storage',)
     # success_url = reverse_lazy('item_list', kwargs={'slug': str(
     #     getattr(Item.objects.last(), 'storage')).lower()})
 

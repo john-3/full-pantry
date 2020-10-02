@@ -52,6 +52,7 @@ class Item(models.Model):
     quantity = models.IntegerField()
     weight = models.IntegerField(blank=True, null=True, default=None)
     purchase_date = models.DateField(auto_now_add=False)
+    expiry_date = models.DateField(blank=True, null=True, auto_now_add=False)
     price = models.FloatField(blank=True, null=True, default=None)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     storage = models.ForeignKey(Storage, on_delete=models.CASCADE)

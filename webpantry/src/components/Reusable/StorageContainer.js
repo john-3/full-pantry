@@ -37,27 +37,16 @@ const StorageContainer = (props) => {
   useEffect(() => {
     const handler = function (event) {
       if (event.key === 'Escape') {
-        isOpen[index.current] = false;
-        setIsOpen([...isOpen])
+        //isOpen[index.current] = false;
+        setIsOpen((isOpen) => (isOpen = [...isOpen.slice(0, index.current), false, ...isOpen.slice(index.current + 1, 0)]))
       }
     }
-
 
     window.addEventListener('keydown', handler)
     return () => {
       window.removeEventListener('keydown', handler)
     }
   }, [isOpen])
-
-  // useEffect(() => {
-  //   for (var i = 0; i < isOpen.length; i++) {
-  //     if (i !== index.current) {
-  //       isOpen[i] = false
-  //     }
-  //   }
-  //   isOpen[index.current] = true;
-  //   setIsOpen([...isOpen]);
-  // }, [isOpen])
 
   const bind = useGesture(
     {

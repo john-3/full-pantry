@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useSpring, animated as a, config } from 'react-spring';
 // Components
@@ -16,7 +16,7 @@ const StorageCard = styled(a.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.isOpen ? lighten(0.1, props.styles.backgroundColor) : props.styles.backgroundColor)};
+  background-color: ${(props) => (props.open ? lighten(0.1, props.styles.backgroundColor) : props.styles.backgroundColor)};
 `;
 
 const StorageTitle = styled.h2`
@@ -37,14 +37,19 @@ const Storage = (props) => {
 
 
   const renderIngredients = (ingredients) => {
-    console.log(window.innerWidth);
     if (ingredients.length < 0) {
       return;
     }
 
-    return ingredients.map((ingredient) => (
-      <Ingredient ingredient={ingredient} />
-    ));
+    return (
+      ingredients.map(
+        (ingredient) => (
+          <a.div key={ingredient.id} style={{ textAlign: 'center', padding, opacity: opacity.interpolate(i => 1 - i) }}>
+            <Ingredient ingredient={ingredient} />
+          </a.div>
+        )
+      )
+    )
   };
 
   const updateOpenCloseUI = (isOpen) => {
@@ -55,14 +60,10 @@ const Storage = (props) => {
       );
   };
 
-  useEffect(() => {
-    renderIngredients(ingredients)
-  }, [ingredients])
-
   return (
     < StorageCard
       styles={styles}
-      isOpen={isOpen}
+      open={isOpen}
       onClick={() => !isOpen && onClick(index)}
     >
       <div style={{ position: 'absolute', top: '0px', right: '0px', padding: '10px', }}>{updateOpenCloseUI(isOpen)}</div>
@@ -70,7 +71,7 @@ const Storage = (props) => {
         <StorageTitle onClick={onClick}>{isOpen ? null : name}</StorageTitle>
       </a.div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: window.innerWidth / 10 }}>
-        {isOpen && (ingredients.map((ingredient) => (<a.div style={{ textAlign: 'center', padding, opacity: opacity.interpolate(i => 1 - i) }}><Ingredient ingredient={ingredient} /></a.div>)))}
+        {isOpen && renderIngredients(ingredients)}
       </div>
     </StorageCard >
   );
